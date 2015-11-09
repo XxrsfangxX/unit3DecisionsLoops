@@ -35,7 +35,7 @@ The universe of the Game of Life is an infinite two-dimensional orthogonal
 *The program grid will be 64x64
 * Alive cells look like (O)
 * Dead cells look like (X)
-* The pattern is a 3x3 hexagon starting in the middle.
+* The pattern is a 4 cells in a line and on the 3rd cell from the left. There are two cells up form that. 
 
 Nonfunctional Requirements:
 
