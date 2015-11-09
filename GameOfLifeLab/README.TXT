@@ -30,7 +30,12 @@ The universe of the Game of Life is an infinite two-dimensional orthogonal
 	moment at which this happens is sometimes called a tick (in other words,
 	each generation is a pure function of the preceding one). The rules
 	continue to be applied repeatedly to create further generations.
-
+*
+*The program will only run for 10000 generations
+*The program grid will be 64x64
+* Alive cells look like (O)
+* Dead cells look like (X)
+* The pattern is a 3x3 hexagon starting in the middle.
 
 Nonfunctional Requirements:
 
