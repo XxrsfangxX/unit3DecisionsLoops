@@ -54,25 +54,40 @@ public class GameOfLife
     {
         // constants for the location of the three cells initially alive
         final int X1 = 2, Y1 = 0;
-        final int X2 = 0, Y2 = 2;
-        final int X3 = 1, Y3 = 2;
+        final int X2 = 2, Y2 = 1;
+        final int X3 = 2, Y3 = 2;
+        final int X4 = 0, Y4= 2;
+        final int X5 = 1, Y5= 2;
+        final int X6 = 3, Y6= 2;
 
         // the grid of Actors that maintains the state of the game
         //  (alive cells contains actors; dead cells do not)
         Grid<Actor> grid = world.getGrid();
         
         // create and add rocks (a type of Actor) to the three intial locations
-        Rock rock1 = new Rock();
+        Actor act1 = new Actor();
         Location loc1 = new Location(Y1, X1);
-        grid.put(loc1, rock1);
+        grid.put(loc1, act1);
         
-        Rock rock2 = new Rock();
+        Actor act2 = new Actor();
         Location loc2 = new Location(Y2, X2);
-        grid.put(loc2, rock2);
+        grid.put(loc2, act2);
         
-        Rock rock3 = new Rock();
+        Actor act3 = new Actor();
         Location loc3 = new Location(Y3, X3);
-        grid.put(loc3, rock3);
+        grid.put(loc3, act3);
+        
+        Actor act4 = new Actor();
+        Location loc4 = new Location(Y4, X4);
+        grid.put(loc4, act4);
+        
+        Actor act5 = new Actor();
+        Location loc5 = new Location(Y5, X5);
+        grid.put(loc5, act5);
+        
+        Actor act6 = new Actor();
+        Location loc6 = new Location(Y6, X6);
+        grid.put(loc6, act6);
     }
 
     /**
