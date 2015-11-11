@@ -4,6 +4,7 @@ import info.gridworld.actor.Rock;
 import info.gridworld.grid.Grid;
 import info.gridworld.grid.BoundedGrid;
 import info.gridworld.grid.Location;
+import java.util.ArrayList;
 
 /**
  * Game of Life starter code. Demonstrates how to create and populate the game using the GridWorld framework.
@@ -98,7 +99,7 @@ public class GameOfLife
      * @post    the world has been populated with a new grid containing the next generation
      * 
      */
-    private void createNextGeneration()
+    public void createNextGeneration()
     {
         /** You will need to read the documentation for the World, Grid, and Location classes
          *      in order to implement the Game of Life algorithm and leverage the GridWorld framework.
@@ -108,9 +109,29 @@ public class GameOfLife
         Grid<Actor> grid = world.getGrid();
         
         // insert magic here...
+       int xcord;
+       int ycord;
+        for( int rows=0; rows<=4; rows++){
+            
+                for( int col= 0; col<=4; col++){
+                    int size= (grid.getOccupiedLocations()).size();
+                    for (int x=0; x<size; x++){
+                   
+                    xcord= (grid.getOccupiedLocations().get(x)).getRow();
+                    ycord= (grid.getOccupiedLocations().get(x)).getCol();
+                    System.out.println(xcord+" "+ ycord);
+                    //if (grid.getEmptyAdjacentLocations(xcord, ycord).size()){}
+                
         
-    }
     
+
+
+}
+}
+}
+
+
+    }
     /**
      * Returns the actor at the specified row and column. Intended to be used for unit testing.
      *
@@ -154,6 +175,7 @@ public class GameOfLife
     public static void main(String[] args)
     {
         GameOfLife game = new GameOfLife();
+        game.createNextGeneration();
     }
 
 }
