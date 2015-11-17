@@ -116,12 +116,13 @@ public class GameOfLife
        String state= "Dead";
        int size= (grid.getOccupiedLocations()).size();
        int deads= 0;
+       int x=0;
 
 
                     for( int rows=0; rows<=4; rows++){           
                              for( int col= 0; col<=4; col++){
-                                 if(!grid.isOccupied(rows, col)){   
-                                 deads= (grid.getEmptyAdjacentLocations(row,col)).size();
+                                 if(!(((grid.getOccupiedLocations().get(x)).getRow()== rows)&&(grid.getOccupiedLocations().get(x)).getCol()== col)){   
+                                 deads= (grid.getEmptyAdjacentLocations(rows,col)).size();
                                     if (deads= 5){
                                         state= "Alive";
 }
@@ -139,7 +140,7 @@ public class GameOfLife
                             state= "Dead";
  
                     }
-                        
+                    x+=1;
     
 }
 }
