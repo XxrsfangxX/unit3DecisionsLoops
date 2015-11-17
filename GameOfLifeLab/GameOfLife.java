@@ -111,27 +111,45 @@ public class GameOfLife
         // insert magic here...
        int xcord;
        int ycord;
-        for( int rows=0; rows<=4; rows++){
-            
-                for( int col= 0; col<=4; col++){
-                    int size= (grid.getOccupiedLocations()).size();
-                    for (int x=0; x<size; x++){
-                   
-                    xcord= (grid.getOccupiedLocations().get(x)).getRow();
-                    ycord= (grid.getOccupiedLocations().get(x)).getCol();
-                    System.out.println(xcord+" "+ ycord);
-                    //if (grid.getEmptyAdjacentLocations(xcord, ycord).size()){}
-                
-        
+       int excord;
+       int eycord;
+       String state= "Dead";
+       int size= (grid.getOccupiedLocations()).size();
+       int deads= 0;
+
+
+                    for( int rows=0; rows<=4; rows++){           
+                             for( int col= 0; col<=4; col++){
+                                 if(!grid.isOccupied(rows, col)){   
+                                 deads= (grid.getEmptyAdjacentLocations(row,col)).size();
+                                    if (deads= 5){
+                                        state= "Alive";
+}
+}
+                                else{
+
+                                        int esize= (grid.getEmptyAdjacentLocations(row,col)).size();
+                                        if (esize >= 4){
+                                            state= "Dead";
+                    }
+                        else if (esize>=6){
+                        state= "Alive";
+                    }
+                        else{
+                            state= "Dead";
+ 
+                    }
+                        
+    
+}
+}
+}
+
     
 
 
-}
-}
-}
-
-
     }
+
     /**
      * Returns the actor at the specified row and column. Intended to be used for unit testing.
      *
