@@ -7,8 +7,7 @@ import info.gridworld.grid.Location;
 import java.util.ArrayList;
 
 /**
- * Game of Life starter code. Demonstrates how to create and populate the game using the GridWorld framework.
- * Also demonstrates how to provide accessor methods to make the class testable by unit tests.
+ * Game of life lab. Creates a world. That has a starting pattern's, and goes through generations reproducing cells, cells dying, or cells living on. 
  * 
  * @author @Ryan Fang
  * @version 18 November 2015
