@@ -11,8 +11,8 @@ import info.gridworld.actor.Actor;
 /**
  * The test class GameOfLifeTest.
  *
- * @author  @gcschmit
- * @version 19 July 2014
+ * @author  @Ryan Fang
+ * @version 18 November 2015
  */
 public class GameOfLifeTest
 {
@@ -88,15 +88,15 @@ public class GameOfLifeTest
     }
 
     @Test
-    public void testFinalState()
+    public void testFinalState()throws InterruptedException
     {
         /* verify that the actual pattern matches the expected pattern after 3 generations         *  
           /* expected pattern for initial state
          *  (X: alive; -: dead)
          * 
          *    0 1 2 3 4
-         *  0 - - - X -
-         *  1 - - - X -
+         *  0 - - - - -
+         *  1 - - X - -
          *  2 - - - - - 
          *  3 - - - - -
          *  4 - - - - -
@@ -105,9 +105,15 @@ public class GameOfLifeTest
            
          
         
-                 GameOfLife game = new GameOfLife();
+        GameOfLife game = new GameOfLife();
         final int ROWS = game.getNumRows();
         final int COLS = game.getNumCols();
+        //this for loop runs through the program to the 3rd generation.
+            for (int i=1; i<=3; i++){
+            Thread.sleep(1000);
+            //The create next generation method updates every second
+            game.createNextGeneration();
+        }
 
         for(int row = 0; row < ROWS; row++)
         {
@@ -115,10 +121,10 @@ public class GameOfLifeTest
             {
                 // in this example, an alive cell has a non-null actor and a dead cell has a null actor
                 Actor cell = game.getActor(row, col);
+                    
 
                 // if the cell at the current row and col should be alive, assert that the actor is not null
-                if( (row== 0&& col== 3)||
-                    (row== 1 && col== 3))
+                if( (row== 1&& col== 2))
                 {
                     assertNotNull("expected alive cell at (" + row + ", " + col + ")", cell);
                 }

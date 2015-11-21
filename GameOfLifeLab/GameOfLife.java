@@ -10,8 +10,8 @@ import java.util.ArrayList;
  * Game of Life starter code. Demonstrates how to create and populate the game using the GridWorld framework.
  * Also demonstrates how to provide accessor methods to make the class testable by unit tests.
  * 
- * @author @gcschmit
- * @version 18 July 2014
+ * @author @Ryan Fang
+ * @version 18 November 2015
  */
 public class GameOfLife
 {
@@ -53,7 +53,7 @@ public class GameOfLife
      */
     private void populateGame()
     {
-        // constants for the location of the three cells initially alive
+        // constants for the location of the 6 cells initially alive
         final int X1 = 2, Y1 = 0;
         final int X2 = 2, Y2 = 1;
         final int X3 = 2, Y3 = 2;
@@ -65,7 +65,7 @@ public class GameOfLife
         //  (alive cells contains actors; dead cells do not)
         Grid<Actor> grid = world.getGrid();
         
-        // create and add rocks (a type of Actor) to the three intial locations
+        // create and adds actors to the three intial locations
         Actor act1 = new Actor();
         Location loc1 = new Location(Y1, X1);
         grid.put(loc1, act1);
@@ -109,47 +109,46 @@ public class GameOfLife
         Grid<Actor> grid = world.getGrid();
         
         // insert magic here...
-       int xcord;
-       int ycord;
-       int excord;
-       int eycord;
-       String state= "Dead";
-       int size= (grid.getOccupiedLocations()).size();
-       int deads= 0;
-       int x=0;
-
-
-                    for( int rows=0; rows<=4; rows++){           
-                             for( int col= 0; col<=4; col++){
-                                 if(!(((grid.getOccupiedLocations().get(x)).getRow()== rows)&&(grid.getOccupiedLocations().get(x)).getCol()== col)){   
-                                 deads= (grid.getEmptyAdjacentLocations(rows,col)).size();
-                                    if (deads= 5){
-                                        state= "Alive";
-}
-}
-                                else{
-
-                                        int esize= (grid.getEmptyAdjacentLocations(row,col)).size();
-                                        if (esize >= 4){
-                                            state= "Dead";
-                    }
-                        else if (esize>=6){
-                        state= "Alive";
-                    }
-                        else{
-                            state= "Dead";
- 
-                    }
-                    x+=1;
-    
-}
-}
-}
-
-    
-
+        Location [] alive= new Location[100];
+        // keeps an array that holds all the locations for alive cells. 
+        int x=0;
+       for( int rows=0; rows<=4; rows++){           
+           for( int col= 0; col<=4; col++){
+               Location loc= new Location( rows, col);
+               int neighbors = grid.getNeighbors(loc).size();
+               //gets the amount of occupied neighbors for each cordinate.
+               if (grid.get(loc)!= null){
+                   if( neighbors ==2 ||  neighbors==3){
+                    alive[x]= loc;   
+                    x++;
+                    //allow cells to live.
+            }
+            else{
+                grid.remove(loc);
+                //removes the cells that die from either overcrowding or underpopulation
+            }
+       }
+       else{
+           if( neighbors==3){
+               alive[x]= loc;
+               x++;
+               // reproduces cells with 3 neighbors. 
+        }
+     }
 
     }
+    }
+    
+
+    for (int i=0; i<x; i++){
+     Actor act= new Actor();
+     grid.put(alive[i], act);
+     // for loops repopulates. the board.   
+    }
+    world.show();
+
+    
+}
 
     /**
      * Returns the actor at the specified row and column. Intended to be used for unit testing.
@@ -191,10 +190,15 @@ public class GameOfLife
      * Creates an instance of this class. Provides convenient execution.
      *
      */
-    public static void main(String[] args)
+    public static void main(String[] args)throws InterruptedException
     {
         GameOfLife game = new GameOfLife();
-        game.createNextGeneration();
+        //this for loop runs through the program to the 3rd generation.
+        for (int i=1; i<=3; i++){
+            Thread.sleep(1000);
+            //The create next generation method updates every second
+            game.createNextGeneration();
+    }
     }
 
 }
